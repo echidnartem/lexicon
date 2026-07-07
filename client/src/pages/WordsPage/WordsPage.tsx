@@ -1,6 +1,7 @@
+import type { KeyboardEvent } from "react";
 import { useMemo, useState } from "react";
-import { paginate, getTotalPages } from "../../shared/lib/pagination";
 import { NavLink, useNavigate } from "react-router-dom";
+import { paginate, getTotalPages } from "../../shared/lib/pagination";
 import styles from "./WordsPage.module.css";
 
 type WordStatus = "new" | "learning" | "learned";
@@ -102,6 +103,24 @@ function WordsPage() {
     // TODO: Toggle favorite status locally and persist changes via API.
   };
 
+  const handleWordOpen = (word: Word) => {
+    navigate(`/words/${word.id}`, {
+      state: {
+        word,
+      },
+    });
+  };
+
+  const handleWordKeyDown = (
+    event: KeyboardEvent<HTMLLIElement>,
+    word: Word,
+  ) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleWordOpen(word);
+    }
+  };
+
   const filteredWords = useMemo(() => {
     return mockWords.filter((word) => {
       const matchesQuery =
@@ -110,6 +129,7 @@ function WordsPage() {
 
       const matchesFilter =
         activeFilter === "all" || word.status === activeFilter;
+        
       return matchesQuery && matchesFilter;
     });
   }, [activeFilter, query]);
@@ -120,7 +140,11 @@ function WordsPage() {
   return (
     <section className={styles.page}>
       <header className={styles.header}>
-        <button className={styles.backButton} onClick={() => navigate("/")}>
+        <button
+          className={styles.backButton}
+          type="button"
+          onClick={() => navigate("/")}
+        >
           ←
         </button>
 
@@ -136,11 +160,11 @@ function WordsPage() {
           <span>⌕</span>
           <input
             value={query}
+            placeholder="Поиск слова..."
             onChange={(event) => {
               setQuery(event.target.value);
               setCurrentPage(1);
             }}
-            placeholder="Поиск слова..."
           />
         </div>
       </div>
@@ -154,6 +178,7 @@ function WordsPage() {
                 ? styles.activeFilter
                 : styles.filter
             }
+            type="button"
             onClick={() => {
               setActiveFilter(filter.value);
               setCurrentPage(1);
@@ -166,7 +191,15 @@ function WordsPage() {
 
       <ul className={styles.list}>
         {words.map((word) => (
-          <li key={word.id} className={styles.wordItem}>
+          <li
+            key={word.id}
+            className={styles.wordItem}
+            role="button"
+            tabIndex={0}
+            aria-label={`Открыть статистику слова ${word.title}`}
+            onClick={() => handleWordOpen(word)}
+            onKeyDown={(event) => handleWordKeyDown(event, word)}
+          >
             <div className={styles.icon}>✦</div>
 
             <div className={styles.wordInfo}>
@@ -179,7 +212,11 @@ function WordsPage() {
 
             <button
               className={styles.favoriteButton}
-              onClick={() => handleFavoriteClick(word.id)}
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                handleFavoriteClick(word.id);
+              }}
             >
               {word.isFavorite ? "★" : "☆"}
             </button>
@@ -189,6 +226,7 @@ function WordsPage() {
 
       <footer className={styles.pagination}>
         <button
+          type="button"
           disabled={currentPage === 1}
           onClick={() => setCurrentPage((page) => page - 1)}
         >
@@ -203,6 +241,7 @@ function WordsPage() {
               <button
                 key={page}
                 className={currentPage === page ? styles.activePage : ""}
+                type="button"
                 onClick={() => setCurrentPage(page)}
               >
                 {page}
@@ -212,6 +251,7 @@ function WordsPage() {
         </div>
 
         <button
+          type="button"
           disabled={currentPage === totalPages}
           onClick={() => setCurrentPage((page) => page + 1)}
         >
