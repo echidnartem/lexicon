@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import type { TestType } from "../../entities/test/model/types";
 import styles from "./TestSessionPage.module.css";
-
-type TestType = "random" | "new" | "learning" | "learned";
 
 type SessionState = {
   type: TestType;

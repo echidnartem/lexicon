@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import type { TestType } from "../../entities/test/model/types";
 import styles from "./TestsPage.module.css";
-
-type TestType = "random" | "new" | "learning" | "learned";
 
 type TestCard = {
   type: TestType;

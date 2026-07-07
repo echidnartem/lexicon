@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import type { TestType } from "../../entities/test/model/types";
 import styles from "./TestResultPage.module.css";
-
-type TestType = "random" | "new" | "learning" | "learned";
 
 type ResultState = {
   correctAnswersCount: number;
