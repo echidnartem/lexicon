@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { TestType } from "../../entities/test/model/types";
+import { BackButton } from "../../shared/ui/BackButton";
+import { Button } from "../../shared/ui/Button";
 import styles from "./TestsPage.module.css";
 
 type TestCard = {
@@ -98,13 +100,7 @@ function TestsPage() {
   return (
     <section className={styles.page}>
       <header className={styles.header}>
-        <button
-          className={styles.backButton}
-          type="button"
-          onClick={() => navigate("/")}
-        >
-          ←
-        </button>
+        <BackButton onClick={() => navigate("/")} />
 
         <h1>Тесты</h1>
       </header>
@@ -170,13 +166,14 @@ function TestsPage() {
             </div>
           </div>
 
-          <button
-            className={styles.startButton}
+          <Button
+            fullWidth
+            size="large"
             type="button"
             onClick={handleStartTest}
           >
             ✦ Начать тест
-          </button>
+          </Button>
         </div>
       </section>
 

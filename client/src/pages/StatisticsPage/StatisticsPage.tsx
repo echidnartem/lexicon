@@ -1,11 +1,10 @@
-import {
-  Bar,
-  BarChart,
-  ResponsiveContainer,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { useNavigate } from "react-router-dom";
+import CompassIcon from "../../shared/assets/icons/icon-compass.svg?react";
+import DiamondIcon from "../../shared/assets/icons/icon-diamond.svg?react";
+import FireIcon from "../../shared/assets/icons/icon-fire.svg?react";
+import LeafIcon from "../../shared/assets/icons/icon-leaf.svg?react";
+import { BackButton } from "../../shared/ui/BackButton";
 import styles from "./StatisticsPage.module.css";
 
 const activityData = [
@@ -22,25 +21,25 @@ const overview = [
     title: "Выучено слов",
     value: "+24",
     subtitle: "за 7 дней",
-    icon: "◇",
+    Icon: DiamondIcon,
   },
   {
     title: "Пройдено тестов",
     value: "7",
     subtitle: "за 7 дней",
-    icon: "↗",
+    Icon: LeafIcon,
   },
   {
     title: "Точность",
     value: "86%",
     subtitle: "средняя",
-    icon: "◌",
+    Icon: CompassIcon,
   },
   {
     title: "Макс. серия",
     value: "7 дней",
     subtitle: "подряд",
-    icon: "✦",
+    Icon: FireIcon,
   },
 ];
 
@@ -50,13 +49,7 @@ function StatisticsPage() {
   return (
     <section className={styles.page}>
       <header className={styles.header}>
-        <button
-          className={styles.backButton}
-          type="button"
-          onClick={() => navigate("/")}
-        >
-          ←
-        </button>
+        <BackButton onClick={() => navigate("/")} />
 
         <h1>Статистика</h1>
       </header>
@@ -105,7 +98,9 @@ function StatisticsPage() {
                 <p>{item.subtitle}</p>
               </div>
 
-              <span className={styles.icon}>{item.icon}</span>
+              <span className={styles.icon} aria-hidden="true">
+                <item.Icon />
+              </span>
             </article>
           ))}
         </div>

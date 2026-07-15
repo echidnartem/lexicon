@@ -1,7 +1,9 @@
 import type { KeyboardEvent } from "react";
 import { useMemo, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { paginate, getTotalPages } from "../../shared/lib/pagination";
+import { BackButton } from "../../shared/ui/BackButton";
+import { ButtonLink } from "../../shared/ui/Button";
 import styles from "./WordsPage.module.css";
 
 type WordStatus = "new" | "learning" | "learned";
@@ -140,19 +142,13 @@ function WordsPage() {
   return (
     <section className={styles.page}>
       <header className={styles.header}>
-        <button
-          className={styles.backButton}
-          type="button"
-          onClick={() => navigate("/")}
-        >
-          ←
-        </button>
+        <BackButton onClick={() => navigate("/")} />
 
         <h1>Мои слова</h1>
 
-        <NavLink to="/words/add" className={styles.addButton}>
+        <ButtonLink to="/words/add">
           + Добавить слово
-        </NavLink>
+        </ButtonLink>
       </header>
 
       <div className={styles.searchRow}>

@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import type { TestType } from "../../entities/test/model/types";
+import { BackButton } from "../../shared/ui/BackButton";
+import { Button } from "../../shared/ui/Button";
 import styles from "./TestSessionPage.module.css";
 
 type SessionState = {
@@ -102,23 +104,18 @@ function TestSessionPage() {
   return (
     <section className={styles.page}>
       <header className={styles.header}>
-        <button
-          className={styles.backButton}
-          type="button"
-          onClick={() => navigate("/tests")}
-        >
-          ←
-        </button>
+        <BackButton onClick={() => navigate("/tests")} />
 
         <h1>Тест</h1>
 
-        <button
-          className={styles.finishButton}
+        <Button
+          size="small"
           type="button"
+          variant="secondary"
           onClick={() => navigate("/tests")}
         >
           Завершить
-        </button>
+        </Button>
       </header>
 
       <div className={styles.progress}>
@@ -146,22 +143,24 @@ function TestSessionPage() {
         <span className={styles.decoration}>✦</span>
       </div>
 
-      <button
-        className={styles.checkButton}
+      <Button
+        fullWidth
+        size="large"
         type="button"
         disabled={!answer.trim()}
         onClick={handleCheckAnswer}
       >
         Проверить
-      </button>
+      </Button>
 
-      <button
-        className={styles.skipButton}
+      <Button
+        fullWidth
         type="button"
+        variant="ghost"
         onClick={handleSkipQuestion}
       >
         Не знаю
-      </button>
+      </Button>
     </section>
   );
 }

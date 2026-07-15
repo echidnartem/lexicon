@@ -1,41 +1,159 @@
 .page {
+  display: grid;
+  gap: 20px;
 }
 
 .header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
-.backButton {
+.header h1 {
+  font-size: clamp(1.7rem, 2.5vw, 2.2rem);
 }
 
 .tabs {
+  display: inline-flex;
+  width: fit-content;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 4px;
+  background: rgba(255, 250, 242, 0.78);
 }
 
-.tab {
+.tab,
+.activeTab {
+  min-width: 120px;
+  min-height: 36px;
+  border: 0;
+  border-radius: 10px;
+  color: var(--color-muted);
+  background: transparent;
 }
 
 .activeTab {
+  color: var(--color-primary);
+  background: rgba(244, 223, 170, 0.34);
 }
 
-.chartCard {
+.chartCard,
+.overview {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  background: var(--color-surface);
 }
 
 .chartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.chartHeader h2,
+.overview h2 {
+  margin: 0;
+  font-size: 1.2rem;
 }
 
 .periodSelect {
+  min-height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0 12px;
+  color: var(--color-primary);
+  background: rgba(255, 250, 242, 0.78);
 }
 
 .chart {
+  height: 210px;
 }
 
-.overview {
+.chart :global(.recharts-cartesian-axis-tick text) {
+  fill: var(--color-muted);
+  font-size: 0.75rem;
+}
+
+.chart :global(.recharts-bar-rectangle path) {
+  fill: var(--color-primary-soft);
 }
 
 .cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
 }
 
 .card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid rgba(80, 61, 98, 0.1);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  background: rgba(255, 250, 242, 0.68);
+}
+
+.card h3,
+.card p {
+  margin: 0;
+}
+
+.card h3 {
+  color: var(--color-muted);
+  font-size: 0.86rem;
+}
+
+.card strong {
+  display: block;
+  margin: 8px 0 4px;
+  color: var(--color-text);
+  font-size: 1.55rem;
+}
+
+.card p {
+  color: var(--color-muted);
+  font-size: 0.8rem;
 }
 
 .icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  color: var(--color-green);
+  font-size: 1.5rem;
+  background: rgba(59, 139, 104, 0.12);
+}
+
+.icon svg {
+  display: block;
+  width: 32px;
+  max-width: 100%;
+  height: 32px;
+  max-height: 100%;
+  overflow: visible;
+}
+
+@media (max-width: 760px) {
+  .tabs {
+    width: 100%;
+  }
+
+  .tab,
+  .activeTab {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
 }

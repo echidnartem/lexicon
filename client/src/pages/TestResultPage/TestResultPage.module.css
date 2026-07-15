@@ -1,23 +1,88 @@
 .page {
+  display: grid;
+  gap: 22px;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
-.backButton {
+.header h1 {
+  font-size: clamp(1.55rem, 2.4vw, 2rem);
 }
 
 .resultCard {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 40px 28px;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+  background: var(--color-surface);
 }
 
 .medal {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  box-shadow: 0 14px 28px rgba(217, 167, 71, 0.24);
+  color: #fffaf2;
+  font-size: 2rem;
+  background: linear-gradient(180deg, var(--color-gold), #b87a25);
+}
+
+.resultCard img {
+  width: min(170px, 48%);
+  object-fit: contain;
+}
+
+.resultCard h2 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+}
+
+.resultCard p {
+  margin: 0;
+  color: var(--color-muted);
 }
 
 .stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
 }
 
-.primaryButton {
+.stats div {
+  border: 1px solid rgba(80, 61, 98, 0.1);
+  border-radius: 16px;
+  padding: 16px;
+  background: rgba(255, 250, 242, 0.68);
 }
 
-.secondaryButton {
+.stats span {
+  display: block;
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.stats strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--color-text);
+  font-size: 1.6rem;
+}
+
+@media (max-width: 620px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
 }

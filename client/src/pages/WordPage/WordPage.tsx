@@ -1,4 +1,6 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { BackButton } from "../../shared/ui/BackButton";
+import { Button } from "../../shared/ui/Button";
 import styles from "./WordPage.module.css";
 
 type Word = {
@@ -27,8 +29,7 @@ const mockWord: Word = {
   translation: "спокойствие, безмятежность",
   partOfSpeech: "Существительное",
   definition: "The state of being calm, peaceful and untroubled.",
-  russianDefinition:
-    "Состояние быть спокойным, мирным и безмятежным.",
+  russianDefinition: "Состояние быть спокойным, мирным и безмятежным.",
   isFavorite: true,
   examples: [
     {
@@ -57,13 +58,7 @@ function WordPage() {
   return (
     <section className={styles.page}>
       <header className={styles.header}>
-        <button
-          className={styles.backButton}
-          type="button"
-          onClick={() => navigate("/words")}
-        >
-          ←
-        </button>
+        <BackButton onClick={() => navigate("/words")} />
 
         <h1>Слово</h1>
 
@@ -135,9 +130,9 @@ function WordPage() {
         </div>
       </section>
 
-      <button className={styles.primaryButton} type="button">
+      <Button fullWidth size="large" type="button">
         ✓ Добавлено
-      </button>
+      </Button>
     </section>
   );
 }

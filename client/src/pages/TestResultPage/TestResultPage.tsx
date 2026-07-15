@@ -1,5 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import type { TestType } from "../../entities/test/model/types";
+import testPageResultImage from "../../shared/assets/images/test-page-result.png";
+import { BackButton } from "../../shared/ui/BackButton";
+import { Button } from "../../shared/ui/Button";
 import styles from "./TestResultPage.module.css";
 
 type ResultState = {
@@ -27,18 +30,12 @@ function TestResultPage() {
   return (
     <section className={styles.page}>
       <header className={styles.header}>
-        <button
-          className={styles.backButton}
-          type="button"
-          onClick={() => navigate("/tests")}
-        >
-          ←
-        </button>
+        <BackButton onClick={() => navigate("/tests")} />
         <h1>Результат теста</h1>
       </header>
 
       <div className={styles.resultCard}>
-        <div className={styles.medal}>✦</div>
+        <img src={testPageResultImage} alt="Test Result Image" />
 
         <h2>{accuracy >= 80 ? "Отлично!" : "Хорошая работа!"}</h2>
         <p>Ты завершил тест</p>
@@ -60,21 +57,24 @@ function TestResultPage() {
           </div>
         </div>
 
-        <button
-          className={styles.primaryButton}
+        <Button
+          fullWidth
+          size="large"
           type="button"
           onClick={() => navigate("/tests/session", { state: retryState })}
         >
           Повторить тест
-        </button>
+        </Button>
 
-        <button
-          className={styles.secondaryButton}
+        <Button
+          fullWidth
+          size="large"
           type="button"
+          variant="secondary"
           onClick={() => navigate("/words")}
         >
           Вернуться к словам
-        </button>
+        </Button>
       </div>
     </section>
   );

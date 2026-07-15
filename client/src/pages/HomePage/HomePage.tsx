@@ -1,3 +1,7 @@
+import CompassIcon from "../../shared/assets/icons/icon-compass.svg?react";
+import FireIcon from "../../shared/assets/icons/icon-fire.svg?react";
+import StarIcon from "../../shared/assets/icons/icon-star.svg?react";
+import { Button } from "../../shared/ui/Button";
 import styles from "./HomePage.module.css";
 
 const learningData = {
@@ -13,7 +17,7 @@ const settingsData = {
 
 function HomePage() {
   const progressMessage =
-    learningData.learningToday >= 10 ? "Отлично!" : "Может быть лучше";
+    learningData.learningToday >= 10 ? "Отлично!" : "Можно лучше!";
 
   return (
     <section className={styles.page}>
@@ -65,17 +69,23 @@ function HomePage() {
 
         <ul className={styles.statsList}>
           <li className={styles.statCard}>
-            <span className={styles.statIcon} aria-hidden="true" />
+            <span className={styles.statIcon} aria-hidden="true">
+              <StarIcon />
+            </span>
             <h3>Всего слов</h3>
             <p>{learningData.learningTotal}</p>
           </li>
           <li className={styles.statCard}>
-            <span className={styles.statIcon} aria-hidden="true" />
+            <span className={styles.statIcon} aria-hidden="true">
+              <FireIcon />
+            </span>
             <h3>Текущая серия</h3>
             <p>{learningData.learningStreak}</p>
           </li>
           <li className={styles.statCard}>
-            <span className={styles.statIcon} aria-hidden="true" />
+            <span className={styles.statIcon} aria-hidden="true">
+              <CompassIcon />
+            </span>
             <h3>Точность</h3>
             <p>{learningData.learningAccuracy}%</p>
           </li>
@@ -91,9 +101,7 @@ function HomePage() {
           <p>Состоит из {settingsData.quizQuestions} вопросов</p>
         </div>
 
-        <button className={styles.primaryAction} type="button">
-          Начать тест
-        </button>
+        <Button type="button">Начать тест</Button>
       </section>
     </section>
   );
