@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import AppLayout from "../layouts/AppLayout";
-import HomePage from "../../pages/HomePage/HomePage";
-import StatisticsPage from "../../pages/StatisticsPage/StatisticsPage";
-import TestsPage from "../../pages/TestsPage/TestsPage";
-import WordsPage from "../../pages/WordsPage/WordsPage";
-import WordPage from "../../pages/WordPage/WordPage";
-import SettingsPage from "../../pages/SettingsPage/SettingsPage";
-import TestSessionPage from "../../pages/TestSessionPage/TestSessionPage";
-import TestResultPage from "../../pages/TestResultPage/TestResultPage";
+import { HomePage } from "../../pages/HomePage";
+import { SettingsPage } from "../../pages/SettingsPage";
+import { StatisticsPage } from "../../pages/StatisticsPage";
+import { TestResultPage } from "../../pages/TestResultPage";
+import { TestSessionPage } from "../../pages/TestSessionPage";
+import { TestsPage } from "../../pages/TestsPage";
+import { WordPage } from "../../pages/WordPage";
+import { WordsPage } from "../../pages/WordsPage";
 
 function Router() {
   return (
