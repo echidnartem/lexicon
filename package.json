@@ -9,7 +9,17 @@
   "scripts": {
     "dev:client": "npm run dev -w client",
     "dev:server": "npm run dev -w server",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "build": "npm run build --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.7.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "globals": "^17.7.0",
+    "typescript-eslint": "^8.64.0"
   }
 }

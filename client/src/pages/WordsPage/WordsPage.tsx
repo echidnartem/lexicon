@@ -101,7 +101,7 @@ function WordsPage() {
   const wordsOnPage = 10;
   const totalWordsCount = 248; // временный mock, потом придёт с backend
 
-  const handleFavoriteClick = (wordId: number) => {
+  const handleFavoriteClick = (_wordId: number) => {
     // TODO: Toggle favorite status locally and persist changes via API.
   };
 
